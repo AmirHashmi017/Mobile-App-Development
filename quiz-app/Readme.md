@@ -25,10 +25,11 @@ A cross-platform quiz application built with **React Native & Expo**, supporting
 
 **1. Clone the repo:**  
    
-    git clone [your-repo-link]
+    git clone git@github.com:AmirHashmi017/Mobile-App-Development.git
 
 **2. Install dependencies:**
 
+    cd Mobile-App-Development/quiz-app
     npm install
 
 **3. Run the app**
