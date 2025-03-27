@@ -9,11 +9,13 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "expo": "~52.0.28",
+    "@react-navigation/stack": "^7.2.3",
+    "expo": "~52.0.38",
+    "expo-sqlite": "~15.1.2",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
-    "react-native": "0.76.6",
-    "react-native-screens": "^4.6.0",
+    "react-native": "0.76.7",
+    "react-native-screens": "~4.4.0",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4"
   },

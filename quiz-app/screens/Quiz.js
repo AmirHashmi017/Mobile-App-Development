@@ -1,33 +1,14 @@
-import React from "react";
-import { View, StyleSheet, StatusBar, Text, SafeAreaView } from "react-native";
-
-import { Button, ButtonContainer } from "../components/Button";
-import { Alert } from "../components/Alert";
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#36B1F0",
-    flex: 1,
-    paddingHorizontal: 20
-  },
-  text: {
-    color: "#fff",
-    fontSize: 25,
-    textAlign: "center",
-    letterSpacing: -0.02,
-    fontWeight: "600"
-  },
-  safearea: {
-    flex: 1,
-    marginTop: 100,
-    justifyContent: "space-between"
-  }
-});
+import React, { useContext } from 'react';
+import { View, StyleSheet, StatusBar, Text, SafeAreaView } from 'react-native';
+import { Button, ButtonContainer } from '../components/Button';
+import { Alert } from '../components/Alert';
+import database from '../database/database';
+import { AuthContext } from '../context/AuthContext';
 
 class Quiz extends React.Component {
   state = {
     correctCount: 0,
-    totalCount: this.props.navigation.getParam("questions", []).length,
+    totalCount: this.props.route.params.questions.length,
     activeQuestionIndex: 0,
     answered: false,
     answerCorrect: false
@@ -53,12 +34,27 @@ class Quiz extends React.Component {
     );
   };
 
-  nextQuestion = () => {
+  nextQuestion = async () => {
     this.setState(state => {
       const nextIndex = state.activeQuestionIndex + 1;
 
       if (nextIndex >= state.totalCount) {
-        return this.props.navigation.popToTop();
+        const { user } = this.props.context;
+        const { quizId } = this.props.route.params;
+        
+        database.addResult({
+          quizId,
+          studentId: user.id,
+          score: state.correctCount,
+          totalQuestions: state.totalCount
+        });
+        
+        this.props.navigation.navigate('QuizResult', {
+          correctCount: state.correctCount,
+          totalCount: state.totalCount,
+          quizId
+        });
+        return;
       }
 
       return {
@@ -69,20 +65,20 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const questions = this.props.navigation.getParam("questions", []);
+    const questions = this.props.route.params.questions;
     const question = questions[this.state.activeQuestionIndex];
 
     return (
       <View
         style={[
           styles.container,
-          { backgroundColor: this.props.navigation.getParam("color") }
+          { backgroundColor: this.props.route.params.color || "#36B1F0" }
         ]}
       >
         <StatusBar barStyle="light-content" />
         <SafeAreaView style={styles.safearea}>
           <View>
-            <Text style={styles.text}>{question.question}</Text>
+            <Text style={styles.text}>{question.text}</Text>
 
             <ButtonContainer>
               {question.answers.map(answer => (
@@ -108,4 +104,29 @@ class Quiz extends React.Component {
   }
 }
 
-export default Quiz;
+const QuizWrapper = (props) => {
+  const context = useContext(AuthContext);
+  return <Quiz {...props} context={context} />;
+};
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#36B1F0",
+    flex: 1,
+    paddingHorizontal: 20
+  },
+  text: {
+    color: "#fff",
+    fontSize: 25,
+    textAlign: "center",
+    letterSpacing: -0.02,
+    fontWeight: "600"
+  },
+  safearea: {
+    flex: 1,
+    marginTop: 100,
+    justifyContent: "space-between"
+  }
+});
+
+export default QuizWrapper;
