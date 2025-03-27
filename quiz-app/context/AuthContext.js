@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import React, { createContext, useState, useEffect } from 'react';
 import database from '../database/database';
 
@@ -9,10 +8,8 @@ export const AuthProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is already logged in (e.g., from previous session)
     const checkLoggedInUser = async () => {
       try {
-        // In a real app, you might check AsyncStorage for a token
         setIsLoading(false);
       } catch (error) {
         console.error(error);

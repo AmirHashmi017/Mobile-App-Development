@@ -1,37 +1,49 @@
-// src/screens/StudentDashboard.js
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, TouchableOpacity, FlatList, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, StyleSheet, Alert, ActivityIndicator } from 'react-native';
 import database from '../database/database';
 import { AuthContext } from '../context/AuthContext';
 
 const StudentDashboard = ({ navigation }) => {
   const [quizzes, setQuizzes] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    const loadQuizzes = async () => {
-      setIsLoading(true);
+    const loadQuizzes = () => {
       try {
-        const publishedQuizzes = await database.getAllPublishedQuizzes();
-        setQuizzes(publishedQuizzes);
+        database.ensureInitialized();
+
+        const publishedQuizzes = database.getAllPublishedQuizzes();
+
+        const safeQuizzes = publishedQuizzes.map(quiz => ({
+          ...quiz,
+          title: quiz.title || 'Unnamed Quiz',
+          questions: quiz.questions || [],
+        }));
+
+        setQuizzes(safeQuizzes);
       } catch (error) {
+        console.error('Quiz loading error:', error);
         Alert.alert('Error', 'Failed to load quizzes');
-        console.error(error);
       } finally {
         setIsLoading(false);
       }
     };
+
     loadQuizzes();
   }, []);
 
   const handleAttemptQuiz = (quiz) => {
-    navigation.navigate('Quiz', { 
-      questions: quiz.questions,
-      title: quiz.title,
-      color: '#36B1F0',
-      quizId: quiz.id
-    });
+    if (quiz.questions && quiz.questions.length > 0) {
+      navigation.navigate('Quiz', { 
+        questions: quiz.questions,
+        title: quiz.title,
+        color: '#36B1F0',
+        quizId: quiz.id
+      });
+    } else {
+      Alert.alert('Error', 'This quiz has no questions');
+    }
   };
 
   const handleLogout = () => {
@@ -49,33 +61,42 @@ const StudentDashboard = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const renderQuizItem = ({ item }) => {
+    const questionCount = Array.isArray(item.questions) ? item.questions.length : 0;
+
+    return (
+      <TouchableOpacity 
+        style={styles.quizCard}
+        onPress={() => handleAttemptQuiz(item)}
+      >
+        <Text style={styles.quizTitle}>{item.title}</Text>
+        <Text style={styles.quizInfo}>
+          {questionCount} question{questionCount !== 1 ? 's' : ''}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+        <Text style={styles.loadingText}>Loading quizzes...</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Available Quizzes</Text>
       
-      {isLoading ? (
-        <Text style={styles.loadingText}>Loading quizzes...</Text>
+      {quizzes.length === 0 ? (
+        <Text style={styles.emptyText}>No quizzes available yet</Text>
       ) : (
         <FlatList
           data={quizzes}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <TouchableOpacity 
-              style={styles.quizCard}
-              onPress={() => handleAttemptQuiz(item)}
-            >
-              <Text style={styles.quizTitle}>{item.title}</Text>
-              <Text style={styles.quizInfo}>
-                {item.questions.length} question{item.questions.length !== 1 ? 's' : ''}
-              </Text>
-              {item.teacherName && (
-                <Text style={styles.quizTeacher}>By: {item.teacherName}</Text>
-              )}
-            </TouchableOpacity>
-          )}
-          ListEmptyComponent={
-            <Text style={styles.emptyText}>No quizzes available yet</Text>
-          }
+          renderItem={renderQuizItem}
         />
       )}
     </View>
@@ -87,6 +108,16 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#f5f5f5',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+  },
+  loadingText: {
+    marginTop: 10,
+    color: '#666',
   },
   title: {
     fontSize: 24,
@@ -109,12 +140,6 @@ const styles = StyleSheet.create({
   },
   quizInfo: {
     color: '#666',
-    marginBottom: 3,
-  },
-  quizTeacher: {
-    color: '#888',
-    fontSize: 14,
-    fontStyle: 'italic',
   },
   logoutButton: {
     marginRight: 15,
@@ -122,11 +147,6 @@ const styles = StyleSheet.create({
   logoutText: {
     color: '#ff4136',
     fontWeight: 'bold',
-  },
-  loadingText: {
-    textAlign: 'center',
-    marginTop: 20,
-    color: '#666',
   },
   emptyText: {
     textAlign: 'center',

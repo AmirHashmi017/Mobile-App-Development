@@ -1,7 +1,7 @@
-
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { ActivityIndicator, View } from 'react-native';
 import { AuthProvider } from './context/AuthContext';
 import database from './database/database';
 
@@ -17,18 +17,30 @@ import QuizResult from './screens/QuizResult';
 const Stack = createStackNavigator();
 
 const App = () => {
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
-    const initializeApp = async () => {
+    const initializeApp = () => {
       try {
-        await database.initializeDatabase();
-        await database.initializeTestData();
+        database.initializeDatabase();
+        database.initializeTestData();
         console.log('Database initialized');
+        setIsReady(true);
       } catch (error) {
         console.error('Initialization error:', error);
+        setIsReady(true); 
       }
     };
     initializeApp();
   }, []);
+
+  if (!isReady) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
 
   return (
     <AuthProvider>

@@ -1,6 +1,6 @@
-// src/screens/TeacherDashboard.js
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TouchableOpacity, FlatList, StyleSheet, Alert } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import database from '../database/database';
 import { AuthContext } from '../context/AuthContext';
 
@@ -8,24 +8,30 @@ const TeacherDashboard = ({ navigation }) => {
   const [quizzes, setQuizzes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { user, logout } = useContext(AuthContext);
+  const isFocused = useIsFocused(); 
+
+  const loadQuizzes = async () => {
+    if (user) {
+      setIsLoading(true);
+      try {
+        const teacherQuizzes = await database.getQuizzesByTeacher(user.id);
+        setQuizzes(teacherQuizzes);
+      } catch (error) {
+        Alert.alert('Error', 'Failed to load quizzes');
+        console.error(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  };
 
   useEffect(() => {
-    const loadQuizzes = async () => {
-      if (user) {
-        setIsLoading(true);
-        try {
-          const teacherQuizzes = await database.getQuizzesByTeacher(user.id);
-          setQuizzes(teacherQuizzes);
-        } catch (error) {
-          Alert.alert('Error', 'Failed to load quizzes');
-          console.error(error);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    };
-    loadQuizzes();
-  }, [user]);
+    if (isFocused) { 
+      loadQuizzes();
+    }
+  }, [user, isFocused]);
+
+    
 
   const handleCreateQuiz = () => {
     navigation.navigate('CreateQuiz');
