@@ -2,12 +2,11 @@ import React, { createContext, useState, useEffect } from 'react';
 import database from '../database/database';
 
 export const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+    useEffect(() => {
     const checkLoggedInUser = async () => {
       try {
         setIsLoading(false);
