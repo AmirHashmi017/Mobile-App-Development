@@ -9,11 +9,11 @@ const StudentDashboard = ({ navigation }) => {
   const { user, logout } = useContext(AuthContext);
 
   useEffect(() => {
-    const loadQuizzes = () => {
+    const loadQuizzes = async() => {
       try {
-        database.ensureInitialized();
+        // database.ensureInitialized();
 
-        const publishedQuizzes = database.getAllPublishedQuizzes();
+        const publishedQuizzes = await database.getAllPublishedQuizzes();
 
         const safeQuizzes = publishedQuizzes.map(quiz => ({
           ...quiz,
