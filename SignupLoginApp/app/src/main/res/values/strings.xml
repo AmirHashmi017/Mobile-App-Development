@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SignUp App</string>
+    <string-array name="countries">
+        <item>Select Country</item>
+        <item>Pakistan</item>
+        <item>United States</item>
+        <item>United Kingdom</item>
+        <item>Canada</item>
+        <item>Australia</item>
+        <item>India</item>
+        <item>Germany</item>
+        <item>France</item>
+        <item>UAE</item>
+        <item>Saudi Arabia</item>
+        <item>Other</item>
+    </string-array>
+</resources>

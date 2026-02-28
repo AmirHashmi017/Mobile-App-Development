@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1A1A2E</color>
+    <color name="colorAccent">#E94560</color>
+    <color name="colorSurface">#16213E</color>
+    <color name="colorCard">#0F3460</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorTextHint">#8899AA</color>
+    <color name="colorUnderweight">#4FC3F7</color>
+    <color name="colorNormal">#66BB6A</color>
+    <color name="colorOverweight">#EF5350</color>
+</resources>
