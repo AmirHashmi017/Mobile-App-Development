@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0F4FF"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quiz App"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#1A237E" />
+
+            <TextView
+                android:id="@+id/tvProgressCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1/5"
+                android:textSize="16sp"
+                android:textColor="#5C6BC0"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Progress Bar -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginBottom="24dp"
+            android:max="5"
+            android:progress="1"
+            android:progressDrawable="@drawable/progress_drawable"
+            android:background="@drawable/progress_background" />
+
+        <!-- Question Number -->
+        <TextView
+            android:id="@+id/tvQuestionNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question 1 of 5"
+            android:textSize="14sp"
+            android:textColor="#7986CB"
+            android:layout_marginBottom="10dp" />
+
+        <!-- Question Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:id="@+id/tvQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question goes here?"
+                    android:textSize="18sp"
+                    android:textColor="#1A237E"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="4dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Options Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+
+            <RadioGroup
+                android:id="@+id/rgOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:background="#FFFFFF">
+
+                <RadioButton
+                    android:id="@+id/rbOption1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 1"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="14dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/radio_option_background"
+                    android:buttonTint="#3F51B5" />
+
+                <RadioButton
+                    android:id="@+id/rbOption2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 2"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="14dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/radio_option_background"
+                    android:buttonTint="#3F51B5" />
+
+                <RadioButton
+                    android:id="@+id/rbOption3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 3"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="14dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/radio_option_background"
+                    android:buttonTint="#3F51B5" />
+
+                <RadioButton
+                    android:id="@+id/rbOption4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Option 4"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="14dp"
+                    android:background="@drawable/radio_option_background"
+                    android:buttonTint="#3F51B5" />
+            </RadioGroup>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Next/Submit Button -->
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Next"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="@drawable/button_background"
+            android:elevation="4dp" />
+
+    </LinearLayout>
+</ScrollView>
