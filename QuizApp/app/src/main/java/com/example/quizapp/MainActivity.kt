@@ -3,139 +3,83 @@ package com.example.quizapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.RadioButton
 import android.widget.RadioGroup
-import android.widget.TextView
+import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tvQuestion: TextView
-    private lateinit var tvQuestionNumber: TextView
-    private lateinit var tvProgressCount: TextView
-    private lateinit var rgOptions: RadioGroup
-    private lateinit var rbOption1: RadioButton
-    private lateinit var rbOption2: RadioButton
-    private lateinit var rbOption3: RadioButton
-    private lateinit var rbOption4: RadioButton
+    private lateinit var scrollView: ScrollView
+    private lateinit var rgOptions1: RadioGroup
+    private lateinit var rgOptions2: RadioGroup
+    private lateinit var rgOptions3: RadioGroup
+    private lateinit var rgOptions4: RadioGroup
+    private lateinit var rgOptions5: RadioGroup
     private lateinit var btnSubmit: Button
 
-    private var currentQuestionIndex = 0
-    private var score = 0
-    private val userAnswers = IntArray(5) { -1 }
-
-    private val questions = listOf(
-        Question(
-            "What is the capital of France?",
-            listOf("London", "Berlin", "Paris", "Madrid"),
-            2
-        ),
-        Question(
-            "Which planet is known as the Red Planet?",
-            listOf("Venus", "Mars", "Jupiter", "Saturn"),
-            1
-        ),
-        Question(
-            "What is 2 + 2 × 2?",
-            listOf("8", "6", "4", "10"),
-            1
-        ),
-        Question(
-            "Who wrote the play 'Romeo and Juliet'?",
-            listOf("Charles Dickens", "Mark Twain", "William Shakespeare", "Jane Austen"),
-            2
-        ),
-        Question(
-            "What is the largest ocean on Earth?",
-            listOf("Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"),
-            3
-        )
-    )
+    // correctAnswerIndex: index of the correct option (0-based)
+    private val correctAnswers = intArrayOf(2, 1, 1, 2, 3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        tvQuestion = findViewById(R.id.tvQuestion)
-        tvQuestionNumber = findViewById(R.id.tvQuestionNumber)
-        tvProgressCount = findViewById(R.id.tvProgressCount)
-        rgOptions = findViewById(R.id.rgOptions)
-        rbOption1 = findViewById(R.id.rbOption1)
-        rbOption2 = findViewById(R.id.rbOption2)
-        rbOption3 = findViewById(R.id.rbOption3)
-        rbOption4 = findViewById(R.id.rbOption4)
-        btnSubmit = findViewById(R.id.btnSubmit)
-
-        loadQuestion()
+        scrollView  = findViewById(R.id.scrollView)   // add android:id="@+id/scrollView" to the root ScrollView
+        rgOptions1  = findViewById(R.id.rgOptions1)
+        rgOptions2  = findViewById(R.id.rgOptions2)
+        rgOptions3  = findViewById(R.id.rgOptions3)
+        rgOptions4  = findViewById(R.id.rgOptions4)
+        rgOptions5  = findViewById(R.id.rgOptions5)
+        btnSubmit   = findViewById(R.id.btnSubmit)
 
         btnSubmit.setOnClickListener {
-            val selectedId = rgOptions.checkedRadioButtonId
-            if (selectedId == -1) {
-                Toast.makeText(this, "Please select an answer!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val selectedIndex = when (selectedId) {
-                R.id.rbOption1 -> 0
-                R.id.rbOption2 -> 1
-                R.id.rbOption3 -> 2
-                R.id.rbOption4 -> 3
-                else -> -1
-            }
-
-            userAnswers[currentQuestionIndex] = selectedIndex
-
-            if (currentQuestionIndex < questions.size - 1) {
-                currentQuestionIndex++
-                loadQuestion()
-            } else {
-                calculateScore()
-                navigateToResult()
-            }
+            submitQuiz()
         }
     }
 
-    private fun loadQuestion() {
-        val question = questions[currentQuestionIndex]
-        tvQuestion.text = question.questionText
-        tvQuestionNumber.text = "Question ${currentQuestionIndex + 1} of ${questions.size}"
-        tvProgressCount.text = "${currentQuestionIndex + 1}/${questions.size}"
+    private fun submitQuiz() {
+        val radioGroups = listOf(rgOptions1, rgOptions2, rgOptions3, rgOptions4, rgOptions5)
 
-        rbOption1.text = question.options[0]
-        rbOption2.text = question.options[1]
-        rbOption3.text = question.options[2]
-        rbOption4.text = question.options[3]
+        // ── Validation: find the first unanswered question ──
+        for ((index, rg) in radioGroups.withIndex()) {
+            if (rg.checkedRadioButtonId == -1) {
+                val questionNumber = index + 1
+                Toast.makeText(
+                    this,
+                    "Please answer Question $questionNumber before submitting.",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-        rgOptions.clearCheck()
-
-        // Restore previous answer if navigated back (optional)
-        if (userAnswers[currentQuestionIndex] != -1) {
-            when (userAnswers[currentQuestionIndex]) {
-                0 -> rbOption1.isChecked = true
-                1 -> rbOption2.isChecked = true
-                2 -> rbOption3.isChecked = true
-                3 -> rbOption4.isChecked = true
+                // Scroll to the unanswered card so the user can see it
+                rg.requestFocus()
+                scrollView.post {
+                    val cardY = (rg.parent?.parent as? android.view.View)?.top ?: 0
+                    scrollView.smoothScrollTo(0, cardY)
+                }
+                return
             }
         }
 
-        // Update button text on last question
-        btnSubmit.text = if (currentQuestionIndex == questions.size - 1) "Submit" else "Next"
-    }
-
-    private fun calculateScore() {
-        score = 0
-        for (i in questions.indices) {
-            if (userAnswers[i] == questions[i].correctAnswerIndex) {
-                score++
+        // ── All answered — calculate score ──
+        val userAnswers = radioGroups.map { rg ->
+            when (rg.checkedRadioButtonId) {
+                // IDs follow the pattern q{N}_opt{M}
+                // We derive the 0-based index from which button in the group is checked
+                else -> {
+                    val checkedIndex = (0 until rg.childCount).indexOfFirst { i ->
+                        (rg.getChildAt(i) as? android.widget.RadioButton)?.isChecked == true
+                    }
+                    checkedIndex
+                }
             }
         }
-    }
 
-    private fun navigateToResult() {
+        val score = userAnswers.zip(correctAnswers.toList()).count { (user, correct) -> user == correct }
+
         val intent = Intent(this, ResultActivity::class.java)
         intent.putExtra("SCORE", score)
-        intent.putExtra("TOTAL", questions.size)
+        intent.putExtra("TOTAL", radioGroups.size)
         startActivity(intent)
         finish()
     }
