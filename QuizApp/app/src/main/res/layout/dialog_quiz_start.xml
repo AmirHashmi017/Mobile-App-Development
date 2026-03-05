@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/dialog_quiz_start.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="16dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Your name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/NameInputTheme">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPlayerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName|textCapWords"
+            android:maxLines="1"
+            android:imeOptions="actionDone"
+            android:textColor="@color/text_primary"
+            android:textSize="15sp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

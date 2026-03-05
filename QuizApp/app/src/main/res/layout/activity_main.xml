@@ -1,540 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--  res/layout/activity_main.xml  -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0F4FF"
-    android:fillViewport="true"
-    tools:context=".MainActivity">
+    android:background="@color/bg_deep">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+    <!-- ── Decorative top arc ── -->
+    <View
+        android:id="@+id/arcTop"
+        android:layout_width="420dp"
+        android:layout_height="420dp"
+        android:background="@drawable/circle_accent_top"
+        android:alpha="0.12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="-160dp"
+        android:layout_marginEnd="-160dp"/>
 
-        <!-- Header -->
-        <LinearLayout
-            android:layout_width="match_parent"
+    <!-- ── Decorative bottom arc ── -->
+    <View
+        android:id="@+id/arcBottom"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:background="@drawable/circle_accent_bottom"
+        android:alpha="0.10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="-120dp"
+        android:layout_marginBottom="-100dp"/>
+
+    <!-- ── Icon container ── -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/iconCard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="16dp"
+        app:cardBackgroundColor="@color/accent_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tvAppName"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="8dp">
+            android:layout_gravity="center"
+            android:text="🧠"
+            android:textSize="44sp"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Quiz App"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="#1A237E" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- ── App name ── -->
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QuizMaster"
+        android:textColor="@color/text_primary"
+        android:textSize="38sp"
+        android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iconCard"
+        app:layout_constraintBottom_toTopOf="@id/tvTagline"/>
+
+    <!-- ── Tagline ── -->
+    <TextView
+        android:id="@+id/tvTagline"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Challenge your mind.\nProve your knowledge."
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName"
+        app:layout_constraintBottom_toTopOf="@id/statsRow"/>
+
+    <!-- ── Stats row ── -->
+    <LinearLayout
+        android:id="@+id/statsRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTagline"
+        app:layout_constraintBottom_toTopOf="@id/btnStartQuiz">
+
+        <!-- Stat 1 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/stat_card_bg"
+            android:padding="16dp"
+            android:layout_marginEnd="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5 Questions"
-                android:textSize="14sp"
-                android:textColor="#5C6BC0" />
+                android:text="5"
+                android:textColor="@color/accent_primary"
+                android:textSize="28sp"
+                android:fontFamily="@font/poppins_bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Questions"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
+        <!-- Stat 2 -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Answer all questions before submitting."
-            android:textSize="13sp"
-            android:textColor="#9FA8DA"
-            android:layout_marginBottom="24dp" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/stat_card_bg"
+            android:padding="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp">
 
-        <!-- ───────── Question 1 ───────── -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp"
-                android:background="#FFFFFF">
+                android:text="⚡"
+                android:textSize="28sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Q1"
-                    android:textSize="11sp"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/question_badge_background"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginBottom="10dp" />
-
-                <TextView
-                    android:id="@+id/tvQuestion1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="What is the capital of France?"
-                    android:textSize="16sp"
-                    android:textColor="#1A237E"
-                    android:textStyle="bold"
-                    android:lineSpacingExtra="3dp"
-                    android:layout_marginBottom="14dp" />
-
-                <RadioGroup
-                    android:id="@+id/rgOptions1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/q1_opt1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="London"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q1_opt2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Berlin"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q1_opt3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Paris"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q1_opt4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Madrid"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- ───────── Question 2 ───────── -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp"
-                android:background="#FFFFFF">
+                android:text="Quick Fire"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Q2"
-                    android:textSize="11sp"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/question_badge_background"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginBottom="10dp" />
-
-                <TextView
-                    android:id="@+id/tvQuestion2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Which planet is known as the Red Planet?"
-                    android:textSize="16sp"
-                    android:textColor="#1A237E"
-                    android:textStyle="bold"
-                    android:lineSpacingExtra="3dp"
-                    android:layout_marginBottom="14dp" />
-
-                <RadioGroup
-                    android:id="@+id/rgOptions2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/q2_opt1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Venus"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q2_opt2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mars"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q2_opt3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Jupiter"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q2_opt4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Saturn"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- ───────── Question 3 ───────── -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <!-- Stat 3 -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/stat_card_bg"
+            android:padding="16dp"
+            android:layout_marginStart="8dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp"
-                android:background="#FFFFFF">
+                android:text="🏆"
+                android:textSize="28sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Q3"
-                    android:textSize="11sp"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/question_badge_background"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginBottom="10dp" />
-
-                <TextView
-                    android:id="@+id/tvQuestion3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="What is 2 + 2 × 2?"
-                    android:textSize="16sp"
-                    android:textColor="#1A237E"
-                    android:textStyle="bold"
-                    android:lineSpacingExtra="3dp"
-                    android:layout_marginBottom="14dp" />
-
-                <RadioGroup
-                    android:id="@+id/rgOptions3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/q3_opt1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="8"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q3_opt2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="6"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q3_opt3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="4"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q3_opt4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="10"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- ───────── Question 4 ───────── -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Q4"
-                    android:textSize="11sp"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/question_badge_background"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginBottom="10dp" />
-
-                <TextView
-                    android:id="@+id/tvQuestion4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Who wrote the play 'Romeo and Juliet'?"
-                    android:textSize="16sp"
-                    android:textColor="#1A237E"
-                    android:textStyle="bold"
-                    android:lineSpacingExtra="3dp"
-                    android:layout_marginBottom="14dp" />
-
-                <RadioGroup
-                    android:id="@+id/rgOptions4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/q4_opt1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Charles Dickens"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q4_opt2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Mark Twain"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q4_opt3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="William Shakespeare"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q4_opt4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Jane Austen"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- ───────── Question 5 ───────── -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="18dp"
-                android:background="#FFFFFF">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Q5"
-                    android:textSize="11sp"
-                    android:textColor="#FFFFFF"
-                    android:background="@drawable/question_badge_background"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:paddingTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:layout_marginBottom="10dp" />
-
-                <TextView
-                    android:id="@+id/tvQuestion5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="What is the largest ocean on Earth?"
-                    android:textSize="16sp"
-                    android:textColor="#1A237E"
-                    android:textStyle="bold"
-                    android:lineSpacingExtra="3dp"
-                    android:layout_marginBottom="14dp" />
-
-                <RadioGroup
-                    android:id="@+id/rgOptions5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RadioButton
-                        android:id="@+id/q5_opt1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Atlantic Ocean"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q5_opt2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Indian Ocean"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q5_opt3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Arctic Ocean"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-
-                    <RadioButton
-                        android:id="@+id/q5_opt4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Pacific Ocean"
-                        android:textSize="15sp"
-                        android:textColor="#333333"
-                        android:padding="12dp"
-                        android:background="@drawable/radio_option_background"
-                        android:buttonTint="#3F51B5" />
-                </RadioGroup>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Submit Button -->
-        <Button
-            android:id="@+id/btnSubmit"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Submit Quiz"
-            android:textSize="18sp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:background="@drawable/button_background"
-            android:elevation="4dp"
-            android:layout_marginBottom="16dp" />
+                android:text="Earn Score"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:fontFamily="@font/poppins_regular"/>
+        </LinearLayout>
 
     </LinearLayout>
-</ScrollView>
+
+    <!-- ── CTA Button ── -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartQuiz"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:text="Start Quiz"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="0.04"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
+        app:backgroundTint="@color/accent_primary"
+        app:cornerRadius="16dp"
+        app:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsRow"
+        app:layout_constraintBottom_toTopOf="@id/tvFooter"/>
+
+    <!-- ── Footer note ── -->
+    <TextView
+        android:id="@+id/tvFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap the button or it'll ask you automatically 😉"
+        android:textColor="@color/text_hint"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

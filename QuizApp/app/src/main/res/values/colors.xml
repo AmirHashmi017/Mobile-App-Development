@@ -1,5 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Backgrounds -->
+    <color name="bg_deep">#0F172A</color>         <!-- deep navy -->
+    <color name="bg_card">#1E293B</color>          <!-- slate card -->
+    <color name="bg_card_stroke">#334155</color>   <!-- subtle border -->
+
+    <!-- Accent -->
+    <color name="accent_primary">#6366F1</color>   <!-- indigo -->
+    <color name="accent_light">#818CF8</color>
+    <color name="accent_glow">#312E81</color>
+
+    <!-- Text -->
+    <color name="text_primary">#F1F5F9</color>
+    <color name="text_secondary">#94A3B8</color>
+    <color name="text_hint">#475569</color>
+
+    <!-- Misc -->
+    <color name="white">#FFFFFF</color>
+    <color name="colorPrimary">#6366F1</color>
+    <color name="colorPrimaryVariant">#4338CA</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
 </resources>
+
+
+    <!-- ════════════════════════════════════════════════
+         res/values/themes.xml  (add/merge into yours)
+         ════════════════════════════════════════════════ -->
+    <!--
+    <style name="QuizDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:background">@color/bg_card</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="buttonBarPositiveButtonStyle">@style/DialogPositiveBtn</item>
+        <item name="buttonBarNegativeButtonStyle">@style/DialogNegativeBtn</item>
+    </style>
+
+    <style name="DialogPositiveBtn" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/accent_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="DialogNegativeBtn" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+    -->
+
+
+    <!-- ════════════════════════════════════════════════
+         res/drawable/stat_card_bg.xml
+         ════════════════════════════════════════════════ -->
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="rectangle">
+        <corners android:radius="16dp"/>
+        <solid android:color="#1E293B"/>
+        <stroke android:width="1dp" android:color="#334155"/>
+    </shape>
+    -->
+
+
+    <!-- ════════════════════════════════════════════════
+         res/drawable/circle_accent_top.xml
+         ════════════════════════════════════════════════ -->
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval">
+        <solid android:color="#6366F1"/>
+    </shape>
+    -->
+
+
+    <!-- ════════════════════════════════════════════════
+         res/drawable/circle_accent_bottom.xml
+         ════════════════════════════════════════════════ -->
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval">
+        <solid android:color="#818CF8"/>
+    </shape>
+    -->
