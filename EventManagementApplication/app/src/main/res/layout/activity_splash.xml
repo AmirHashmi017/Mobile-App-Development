@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_splash_gradient">
+
+    <!-- Decorative circles -->
+    <View
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:alpha="0.08"
+        android:background="@drawable/bg_image_placeholder"
+        app:layout_constraintBottom_toTopOf="@id/ivAppLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:alpha="0.06"
+        android:background="@drawable/bg_image_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcomeText" />
+
+    <!-- App Logo -->
+    <ImageView
+        android:id="@+id/ivAppLogo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/ic_app_logo"
+        android:contentDescription="App Logo"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toTopOf="@id/tvAppName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVerticalBias="0.42" />
+
+    <!-- App Name -->
+    <TextView
+        android:id="@+id/tvAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.05"
+        android:text="Smart Event Manager"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivAppLogo" />
+
+    <!-- Divider Line -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="14dp"
+        android:background="#03DAC5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+
+    <!-- Welcome Text -->
+    <TextView
+        android:id="@+id/tvWelcomeText"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:text="@string/welcome_splash"
+        android:textColor="#B3E5FC"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider" />
+
+    <!-- Loading Progress -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="4dp"
+        android:layout_marginBottom="60dp"
+        android:indeterminate="true"
+        android:indeterminateTint="#03DAC5"
+        android:progressTint="#03DAC5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Version -->
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Version 1.0"
+        android:textColor="#7986CB"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

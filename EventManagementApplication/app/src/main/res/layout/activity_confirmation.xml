@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+    <!-- Success Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/bg_success_header"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <ImageView
+            android:id="@+id/ivSuccessCheck"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:src="@drawable/ic_success_check"
+            android:contentDescription="Success" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Registration Confirmed!"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSuccessMessage"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/success_message"
+            android:textColor="#C8E6C9"
+            android:textSize="13sp"
+            android:lineSpacingExtra="3dp" />
+
+    </LinearLayout>
+
+    <!-- Scrollable Details -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Profile Image Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="14dp"
+                        android:text="Participant Image"
+                        android:textColor="#6200EE"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ivConfirmImage"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/bg_image_placeholder"
+                        android:contentDescription="Participant Image"
+                        android:padding="2dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_person_placeholder" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Registration Details Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:text="📋  Registration Details"
+                        android:textColor="#6200EE"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                    <!-- Full Name -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="👤  Full Name"
+                            android:textColor="#6200EE"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=":"
+                            android:textColor="#424242"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/tvConfirmName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="—"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginBottom="12dp"/>
+
+                    <!-- Phone -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="📞  Phone"
+                            android:textColor="#6200EE"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=":"
+                            android:textColor="#424242"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/tvConfirmPhone"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="—"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginBottom="12dp"/>
+
+                    <!-- Email -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="✉️  Email"
+                            android:textColor="#6200EE"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=":"
+                            android:textColor="#424242"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/tvConfirmEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="—"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginBottom="12dp"/>
+
+                    <!-- Event Type -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="🎓  Event Type"
+                            android:textColor="#6200EE"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=":"
+                            android:textColor="#424242"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/tvConfirmEventType"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="—"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginBottom="12dp"/>
+
+                    <!-- Date -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="12dp">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="📅  Event Date"
+                            android:textColor="#6200EE"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=":"
+                            android:textColor="#424242"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/tvConfirmDate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="—"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F0F0F0" android:layout_marginBottom="12dp"/>
+
+                    <!-- Gender -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:text="⚧  Gender"
+                            android:textColor="#6200EE"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text=":"
+                            android:textColor="#424242"
+                            android:textSize="13sp"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/tvConfirmGender"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="—"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Back to Home Button -->
+            <Button
+                android:id="@+id/btnBackToHome"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="🏠  Back to Home"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:elevation="4dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
