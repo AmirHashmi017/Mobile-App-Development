@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- White circle background -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M50,50 m-45,0 a45,45 0 1,0 90,0 a45,45 0 1,0 -90,0"/>
+
+    <!-- Calendar icon body -->
+    <path android:fillColor="#1565C0"
+        android:pathData="M28,35 L72,35 L72,72 L28,72 Z"/>
+    <path android:fillColor="#0D47A1"
+        android:pathData="M28,35 L72,35 L72,45 L28,45 Z"/>
+
+    <!-- Calendar rings -->
+    <path android:fillColor="#FF6D00"
+        android:pathData="M38,28 L38,38 M62,28 L62,38"
+        android:strokeColor="#FF6D00"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"/>
+
+    <!-- Calendar grid dots -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M37,52 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0
+                          M50,52 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0
+                          M63,52 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0
+                          M37,63 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0
+                          M50,63 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0"/>
+</vector>

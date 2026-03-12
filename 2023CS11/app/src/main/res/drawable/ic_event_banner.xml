@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="180dp"
+    android:viewportWidth="360"
+    android:viewportHeight="180">
+
+    <!-- Background gradient effect -->
+    <path android:fillColor="#1565C0"
+        android:pathData="M0,0 L360,0 L360,180 L0,180 Z"/>
+    <path android:fillColor="#1976D2"
+        android:pathData="M0,60 Q90,20 180,60 Q270,100 360,60 L360,180 L0,180 Z"/>
+
+    <!-- Stage/Podium -->
+    <path android:fillColor="#0D47A1"
+        android:pathData="M120,130 L240,130 L255,155 L105,155 Z"/>
+    <path android:fillColor="#1565C0"
+        android:pathData="M110,155 L250,155 L250,165 L110,165 Z"/>
+
+    <!-- Microphone stand -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M175,90 L185,90 L185,130 L175,130 Z"/>
+    <path android:fillColor="#FF6D00"
+        android:pathData="M172,75 m-12,0 a12,15 0 1,0 24,0 a12,15 0 1,0 -24,0"/>
+
+    <!-- Decorative circles / spotlight -->
+    <path android:fillColor="#FFFFFF" android:fillAlpha="0.1"
+        android:pathData="M30,30 m-25,0 a25,25 0 1,0 50,0 a25,25 0 1,0 -50,0"/>
+    <path android:fillColor="#FFFFFF" android:fillAlpha="0.08"
+        android:pathData="M320,40 m-30,0 a30,30 0 1,0 60,0 a30,30 0 1,0 -60,0"/>
+    <path android:fillColor="#FF6D00" android:fillAlpha="0.15"
+        android:pathData="M180,20 m-40,0 a40,20 0 1,0 80,0 a40,20 0 1,0 -80,0"/>
+
+    <!-- Stars/Sparkles -->
+    <path android:fillColor="#FFD700"
+        android:pathData="M50,50 L53,60 L63,60 L55,66 L58,76 L50,70 L42,76 L45,66 L37,60 L47,60 Z"/>
+    <path android:fillColor="#FFD700"
+        android:pathData="M300,50 L302,57 L309,57 L303,61 L306,68 L300,64 L294,68 L297,61 L291,57 L298,57 Z"/>
+
+    <!-- Text: Event Conference -->
+    <path android:fillColor="#FFFFFF" android:fillAlpha="0.9"
+        android:pathData="M145,40 L215,40 L215,55 L145,55 Z" android:fillAlpha="0.0"/>
+</vector>
