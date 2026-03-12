@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Event Manager</string>
+    <string name="welcome_text">Welcome to the Event Management App</string>
+    <string name="tagline">Your Premier Event Experience</string>
+    <string name="main_welcome">Discover &amp; Register for\nExclusive Events</string>
+    <string name="app_description">Join thousands of participants at world-class seminars, workshops, conferences, and cultural events. Your journey to extraordinary experiences starts here.</string>
+    <string name="register_btn">Register for Event</string>
+    <string name="registration_title">Event Registration</string>
+    <string name="full_name_hint">Participant Full Name</string>
+    <string name="phone_hint">Phone Number</string>
+    <string name="email_hint">Email Address</string>
+    <string name="select_event">Select Event Type</string>
+    <string name="select_date">Select Event Date</string>
+    <string name="gender_label">Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="other">Other</string>
+    <string name="upload_image">Upload Profile Photo</string>
+    <string name="terms_text">I accept the Terms and Conditions</string>
+    <string name="submit_btn">Submit Registration</string>
+    <string name="confirmation_title">Registration Confirmed!</string>
+    <string name="success_message">Your event registration has been submitted successfully.</string>
+    <string name="back_home">Back to Home</string>
+    <string name="confirm_dialog_title">Confirm Registration</string>
+    <string name="confirm_dialog_message">Are you sure you want to submit your registration?</string>
+    <string name="confirm_yes">Yes, Submit</string>
+    <string name="confirm_no">Cancel</string>
+
+    <string-array name="event_types">
+        <item>Select Event Type</item>
+        <item>Seminar</item>
+        <item>Workshop</item>
+        <item>Conference</item>
+        <item>Webinar</item>
+        <item>Cultural Event</item>
+    </string-array>
+</resources>

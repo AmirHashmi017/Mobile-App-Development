@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_bg">
+
+    <!-- Decorative circles -->
+    <View
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-100dp"
+        android:layout_marginEnd="-100dp"
+        android:alpha="0.06"
+        android:background="@drawable/logo_circle"/>
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="-60dp"
+        android:layout_marginBottom="-60dp"
+        android:alpha="0.06"
+        android:background="@drawable/logo_circle"/>
+
+    <!-- Center Content -->
+    <LinearLayout
+        android:id="@+id/splashContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Logo Container -->
+        <FrameLayout
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginBottom="32dp">
+
+            <View
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:background="@drawable/logo_circle"
+                android:alpha="0.15"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="★"
+                android:textColor="#E94560"
+                android:textSize="56sp"/>
+        </FrameLayout>
+
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Smart Event"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            android:fontFamily="sans-serif-light"
+            android:letterSpacing="0.05"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manager"
+            android:textColor="#E94560"
+            android:textSize="36sp"
+            android:fontFamily="sans-serif-bold"
+            android:letterSpacing="0.05"
+            android:textAlignment="center"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Divider Line -->
+        <View
+            android:layout_width="80dp"
+            android:layout_height="2dp"
+            android:background="#E94560"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Welcome Text -->
+        <TextView
+            android:id="@+id/tvWelcome"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:text="Welcome to the Event Management App"
+            android:textColor="@color/white_80"
+            android:textSize="15sp"
+            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
+            android:lineSpacingMultiplier="1.4"/>
+    </LinearLayout>
+
+    <!-- Bottom Loading Bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="64dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="180dp"
+            android:layout_height="3dp"
+            android:indeterminate="true"
+            android:progressTint="#E94560"
+            android:indeterminateTint="#E94560"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading..."
+            android:textColor="@color/white_50"
+            android:textSize="12sp"
+            android:letterSpacing="0.15"
+            android:fontFamily="sans-serif-light"/>
+    </LinearLayout>
+
+    <!-- Version -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="v1.0.0"
+        android:textColor="@color/white_50"
+        android:textSize="11sp"/>
+
+</RelativeLayout>
