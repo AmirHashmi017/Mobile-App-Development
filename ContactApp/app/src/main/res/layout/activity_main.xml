@@ -6,56 +6,302 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:background="#F0F4F8"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contact Saver App"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp" />
-
-    <EditText
-        android:id="@+id/etName"
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Name"
-        android:inputType="textPersonName"
-        android:layout_marginBottom="10dp" />
+        android:orientation="vertical"
+        android:background="#1A73E8"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
-    <EditText
-        android:id="@+id/etPhone"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My Contacts"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manage your contact list"
+            android:textColor="#C8DEFF"
+            android:textSize="13sp"
+            android:layout_marginTop="2dp" />
+    </LinearLayout>
+
+    <!-- Scrollable content -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Phone Number"
-        android:inputType="phone"
-        android:maxLength="11"
-        android:layout_marginBottom="12dp" />
-
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Contact"
-        android:layout_marginBottom="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewContacts"
-        android:layout_width="match_parent"
-        android:layout_height="287dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
-        android:clipToPadding="false"
-        android:paddingBottom="8dp" />
-    <Button
-        android:id="@+id/btnLoadContacts"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Add Contact Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add New Contact"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#1A73E8"
+                        android:layout_marginBottom="14dp" />
+
+                    <!-- Avatar picker row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="14dp">
+
+                        <FrameLayout
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
+                            android:layout_marginEnd="14dp">
+
+                            <ImageView
+                                android:id="@+id/ivAddAvatar"
+                                android:layout_width="72dp"
+                                android:layout_height="72dp"
+                                android:scaleType="fitXY"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="bottom|end"
+                                android:src="@drawable/ic_camera_badge"
+                                android:background="@drawable/badge_bg"
+                                android:padding="3dp" />
+                        </FrameLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Profile Photo"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="#1A1A2E" />
+
+                            <TextView
+                                android:id="@+id/tvAddAvatarHint"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tap to add photo"
+                                android:textSize="12sp"
+                                android:textColor="#888888"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/etName"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:hint="Full Name"
+                        android:inputType="textPersonName"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:background="@drawable/input_bg"
+                        android:layout_marginBottom="10dp"
+                        android:textSize="14sp"
+                        android:textColor="#1A1A2E"
+                        android:textColorHint="#9E9E9E" />
+
+                    <EditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:hint="Phone Number"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:background="@drawable/input_bg"
+                        android:layout_marginBottom="14dp"
+                        android:textSize="14sp"
+                        android:textColor="#1A1A2E"
+                        android:textColorHint="#9E9E9E" />
+
+                    <Button
+                        android:id="@+id/btnSave"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:text="Save Contact"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/btn_primary"
+                        android:backgroundTint="@null"
+                        android:stateListAnimator="@null" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Search + Sort Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/input_bg"
+                        android:gravity="center_vertical"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:layout_marginBottom="10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🔍"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <EditText
+                            android:id="@+id/etSearch"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:hint="Search by name or number..."
+                            android:background="@null"
+                            android:textSize="14sp"
+                            android:textColor="#1A1A2E"
+                            android:textColorHint="#9E9E9E"
+                            android:inputType="text"
+                            android:singleLine="true" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sort by name:"
+                            android:textSize="13sp"
+                            android:textColor="#666666" />
+
+                        <ImageButton
+                            android:id="@+id/btnSortAsc"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/sort_btn_bg"
+                            android:src="@drawable/ic_sort_asc"
+                            android:contentDescription="Sort A-Z"
+                            android:alpha="0.4"
+                            android:layout_marginEnd="8dp"
+                            android:scaleType="center"
+                            android:padding="8dp" />
+
+                        <ImageButton
+                            android:id="@+id/btnSortDesc"
+                            android:layout_width="44dp"
+                            android:layout_height="44dp"
+                            android:background="@drawable/sort_btn_bg"
+                            android:src="@drawable/ic_sort_desc"
+                            android:contentDescription="Sort Z-A"
+                            android:alpha="0.4"
+                            android:scaleType="center"
+                            android:padding="8dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Contacts List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewContacts"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:clipToPadding="false"
+                android:paddingBottom="4dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Action Buttons -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Load Contacts From Phone"
-        android:layout_marginBottom="16dp" />
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
+        android:padding="12dp">
+
+        <Button
+            android:id="@+id/btnLoadContacts"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Load Contacts From Mobile"
+            android:textSize="11sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_primary"
+            android:backgroundTint="@null"
+            android:stateListAnimator="@null"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnGridView"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="⊞ Contacts Grid"
+            android:textSize="13sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/btn_secondary"
+            android:stateListAnimator="@null" />
+    </LinearLayout>
 
 </LinearLayout>
